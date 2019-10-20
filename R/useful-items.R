@@ -154,7 +154,6 @@ socialStatsItem <- function(value = NULL, name = NULL) {
 #' @param lineCap Default: 'round'.	Defines how the ending of the bar line looks like. Possible values are: butt, round and square.
 #' @param lineWidth Default: 3.	Width of the chart line in px.
 #' @param rotate Default: 0.	Rotation of the complete chart in degrees.
-#' @param title Default: ''. Title for the chart. Displayed Below.
 #'
 #' @examples
 #' if (interactive()) {
@@ -178,8 +177,7 @@ socialStatsItem <- function(value = NULL, name = NULL) {
 #'        scaleLength = 10,
 #'        lineCap = "square",
 #'        lineWidth = 6,
-#'        rotate = 180,
-#'        title = ''
+#'        rotate = 180
 #'       )
 #'      )
 #'     )
