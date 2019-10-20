@@ -221,7 +221,7 @@ pieChart <- function(id, value, height = 220, width = 220,
                var arr = ['value', 'id', 'title'];
                var chart = $('#' + obj.id);    
                chart.attr('data-percent', obj.value);
-               $('#' + obj.id + ' span').text(obj.value);
+               $('#' + obj.id + ' span.percent').text(obj.value);
                for await (key of Object.keys(obj).filter(function(el) {!arr.includes(el)})) {
                   chart.data('easyPieChart').options[key] = obj[key];
                   return;
