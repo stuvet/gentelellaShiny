@@ -224,10 +224,8 @@ pieChart <- function(id, value, height = 220, width = 220,
                $('#' + obj.id).find('.percent').text(obj.value);
                for await (key of Object.keys(obj).filter(function(el) {!arr.includes(el)})) {
                   chart.data('easyPieChart').options[key] = obj[key];
-                  return;
                }
                chart.data('easyPieChart').update(obj.value);
-               return;
             });
             "
           )
