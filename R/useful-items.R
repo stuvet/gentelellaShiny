@@ -206,7 +206,7 @@ pieChart <- function(id, value, height = 220, width = 220,
         value
       ),
       shiny::tags$canvas(height = height, width = width),
-      shiny::tags$h1(title)
+      shiny::tags$p(title)
     )
   )
 
