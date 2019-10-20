@@ -154,6 +154,7 @@ socialStatsItem <- function(value = NULL, name = NULL) {
 #' @param lineCap Default: 'round'.	Defines how the ending of the bar line looks like. Possible values are: butt, round and square.
 #' @param lineWidth Default: 3.	Width of the chart line in px.
 #' @param rotate Default: 0.	Rotation of the complete chart in degrees.
+#' @param title Default: "". Title displayed below the chart.
 #'
 #' @examples
 #' if (interactive()) {
@@ -192,7 +193,7 @@ socialStatsItem <- function(value = NULL, name = NULL) {
 pieChart <- function(id, value, height = 220, width = 220,
                      barColor = "#ef1e25", trackColor = "#f2f2f2",
                      scaleColor = "#dfe0e0", scaleLength = 5,
-                     lineCap = "round", lineWidth = 3, rotate = 0, title = '') {
+                     lineCap = "round", lineWidth = 3, rotate = 0, title = "") {
   pieChartTag <- shiny::div(
     style = "text-align: center; margin-bottom: 17px;",
     shiny::span(
@@ -203,8 +204,8 @@ pieChart <- function(id, value, height = 220, width = 220,
         class = "percent",
         value
       ),
-      shiny::tags$canvas(height = height, width = width),
-      shiny::tags$h1(title)
+      shiny::span(title, style="white-space:pre"),
+      shiny::tags$canvas(height = height, width = width)
     )
   )
 
