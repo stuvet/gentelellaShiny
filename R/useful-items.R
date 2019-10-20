@@ -215,6 +215,7 @@ pieChart <- function(id, value, height = 220, width = 220,
     shiny::singleton(
       shiny::tags$head(
         shiny::tags$script(
+          paste0(
             "Shiny.addCustomMessageHandler(id, 
               async function(obj) {
                var chart = $('#' + obj.id);    
@@ -228,8 +229,7 @@ pieChart <- function(id, value, height = 220, width = 220,
                chart.data('easyPieChart').update(obj.value);
                return;
             });
-            "
-          paste0(
+            ",
             "$(function() {
               $('#", id, "').easyPieChart({
                //your options goes here
