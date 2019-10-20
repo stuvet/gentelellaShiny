@@ -223,6 +223,7 @@ pieChart <- function(id, value, height = 220, width = 220,
                $('#' + obj.id + ' span').text(obj.value);
                $('#' + obj.id).append(obj.title);
                for await (key of Object.keys(obj).filter(function(el) {!['value', 'id', 'title'].includes(el)})) {
+                  console.log(key);
                   chart.data('easyPieChart').options[key] = obj[key];
                   return;
                }
