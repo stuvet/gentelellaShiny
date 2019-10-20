@@ -218,12 +218,11 @@ pieChart <- function(id, value, height = 220, width = 220,
           paste0(
             "Shiny.addCustomMessageHandler('", id, "', 
               async function(obj) {
+               var arr = ['value', 'id', 'title'];
                var chart = $('#' + obj.id);    
                chart.attr('data-percent', obj.value);
                $('#' + obj.id + ' span').text(obj.value);
-               $('#' + obj.id).append(obj.title);
-               for await (key of Object.keys(obj).filter(function(el) {!['value', 'id', 'title'].includes(el)})) {
-                  console.log(key);
+               for await (key of Object.keys(obj).filter(function(el) {!arr.includes(el)})) {
                   chart.data('easyPieChart').options[key] = obj[key];
                   return;
                }
