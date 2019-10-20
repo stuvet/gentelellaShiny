@@ -229,7 +229,11 @@ pieChart <- function(id, value, height = 220, width = 220,
                chart.data('easyPieChart').update(obj.value);
                return;
             });
-            ",
+            "
+          )
+        ),
+        shiny::tags$script(
+          paste0(
             "$(function() {
               $('#", id, "').easyPieChart({
                //your options goes here
