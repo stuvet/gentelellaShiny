@@ -216,6 +216,22 @@ pieChart <- function(id, value, height = 220, width = 220,
       shiny::tags$head(
         shiny::tags$script(
           paste0(
+            "Shiny.addCustomMessageHandler(id, 
+              async function(", obj, ") {
+               var chart = $('#", obj.id, "');    
+               chart.attr('data-percent', ", obj.value, ");
+               $('#", obj.id, " span').text(", obj.value, ");
+               $('#", obj.id, "').append(", obj.title, ");
+               for await (key of Object.keys(", obj, ").filter(function(el) {!['value', 'id', 'title'].includes(el)})) {
+                  chart.data('easyPieChart').options[key] = ", obj, "[key];
+                  return;
+               }
+               chart.data('easyPieChart').update(", obj.value, ");
+               return;
+            });
+            "
+          )
+          paste0(
             "$(function() {
               $('#", id, "').easyPieChart({
                //your options goes here
