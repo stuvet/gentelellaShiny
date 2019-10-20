@@ -192,7 +192,7 @@ socialStatsItem <- function(value = NULL, name = NULL) {
 pieChart <- function(id, value, height = 220, width = 220,
                      barColor = "#ef1e25", trackColor = "#f2f2f2",
                      scaleColor = "#dfe0e0", scaleLength = 5,
-                     lineCap = "round", lineWidth = 3, rotate = 0) {
+                     lineCap = "round", lineWidth = 3, rotate = 0, title = '') {
   pieChartTag <- shiny::div(
     style = "text-align: center; margin-bottom: 17px;",
     shiny::span(
@@ -203,7 +203,8 @@ pieChart <- function(id, value, height = 220, width = 220,
         class = "percent",
         value
       ),
-      shiny::tags$canvas(height = height, width = width)
+      shiny::tags$canvas(height = height, width = width),
+      shiny::tags$h1(title)
     )
   )
 
