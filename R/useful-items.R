@@ -204,6 +204,7 @@ pieChart <- function(id, value, height = 220, width = 220,
         class = "percent",
         value
       ),
+      shiny::br(),
       shiny::span(title, style="white-space:pre"),
       shiny::tags$canvas(height = height, width = width)
     )
