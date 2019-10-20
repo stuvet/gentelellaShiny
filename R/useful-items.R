@@ -216,7 +216,7 @@ pieChart <- function(id, value, height = 220, width = 220,
       shiny::tags$head(
         shiny::tags$script(
           paste0(
-            "Shiny.addCustomMessageHandler(", id, ", 
+            "Shiny.addCustomMessageHandler('", id, "', 
               async function(obj) {
                var chart = $('#' + obj.id);    
                chart.attr('data-percent', obj.value);
