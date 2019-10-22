@@ -897,7 +897,7 @@ tileCountRow <- function(...){
 #' @author Mark Edmondson, \email{m@@sunholo.com}
 #'
 #' @export
-tileCountElement <- function(id, value = 2500, change_value = "4%", going_well = TRUE,
+tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_well = TRUE,
                              tile_title = " Total Users", width = 3,
                              icon_in = shiny::icon("user"), from_text = " From last Week",
                              highlight = NULL){
