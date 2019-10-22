@@ -934,7 +934,6 @@ tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_w
                if(obj.hasOwnProperty('value')){
                   tile_top.find('.count').text(obj.value);
                }
-                tile.find('.count_top').find('.count').text(obj.value);
                if(obj.hasOwnProperty('from_text')){
                   tile_bottom.text(obj.from_text);
                }
