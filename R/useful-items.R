@@ -928,11 +928,14 @@ tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_w
                var tile_bottom = tile.find('.count_bottom');
                var tile_top = tile.find('.count_top');
                var tile_delta = tile_bottom.find('#' + obj.id + '_delta');
+               if(obj.hasOwnProperty('tile_title')){
+                  tile_top.find('.fa').text(obj.tile_title);
+               }
                if(obj.hasOwnProperty('icon_text')){
-                  tile_top.find('.fa').attr('class', 'fa ' + obj.icon_text)
+                  tile_top.find('.fa').attr('class', 'fa ' + obj.icon_text);
                }
                if(obj.hasOwnProperty('value')){
-                  tile_top.find('.count').text(obj.value);
+                  tile_top.find('.count ').text(obj.value);
                }
                if(obj.hasOwnProperty('from_text')){
                   tile_bottom.text(obj.from_text);
@@ -945,9 +948,9 @@ tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_w
                }
                if(obj.hasOwnProperty('direction')){          
                  if(obj.direction === 'up') {
-                    tile_delta.find('.fa').attr('class', 'fa fa-sort-asc')
+                    tile_delta.find('.fa').attr('class', 'fa fa-sort-down')
                  } else if (obj.direction === 'down') {
-                    tile_delta.find('.fa').attr('class', 'fa fa-sort-desc')
+                    tile_delta.find('.fa').attr('class', 'fa fa-sort-up')
                  } else if (obj.direction === 'none') {
                     tile_delta.find('.fa').attr('class', 'fa fa-sort')
                  }
