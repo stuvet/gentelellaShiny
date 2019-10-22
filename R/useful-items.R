@@ -948,11 +948,11 @@ tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_w
                }
                if(obj.hasOwnProperty('direction')){          
                  if(obj.direction === 'up') {
-                    tile_delta.find('.fa').attr('class', 'fa fa-sort-down')
+                    tile_delta.find('i').attr('class', 'fa fa-sort-down')
                  } else if (obj.direction === 'down') {
-                    tile_delta.find('.fa').attr('class', 'fa fa-sort-up')
+                    tile_delta.find('i').attr('class', 'fa fa-sort-up')
                  } else if (obj.direction === 'none') {
-                    tile_delta.find('.fa').attr('class', 'fa fa-sort')
+                    tile_delta.find('i').attr('class', 'fa fa-sort')
                  }
                }
                return;
