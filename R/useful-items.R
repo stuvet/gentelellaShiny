@@ -948,7 +948,7 @@ tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_w
                     tile_delta.find('.fa').attr('class', 'fa fa-sort-asc')
                  } else if (obj.direction === 'down') {
                     tile_delta.find('.fa').attr('class', 'fa fa-sort-desc')
-                 } else if (obj.direction === 'none' {
+                 } else if (obj.direction === 'none') {
                     tile_delta.find('.fa').attr('class', 'fa fa-sort')
                  }
                }
