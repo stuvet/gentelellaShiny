@@ -218,7 +218,7 @@ pieChart <- function(id, value, height = 220, width = 220,
           paste0(
             "Shiny.addCustomMessageHandler('", id, "', 
               async function(obj) {
-               var keys = Object.keys(obj).filter(el => !['value', 'id', 'title'].includes(el));
+               var keys = Object.keys(obj).filter(el =\> !['value', 'id', 'title'].includes(el));
                var chart = $('#' + obj.id);    
                chart.attr('data-percent', obj.value);
                $('#' + obj.id).find('.percent').text(obj.value);
