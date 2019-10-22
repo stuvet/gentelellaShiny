@@ -226,7 +226,6 @@ pieChart <- function(id, value, height = 220, width = 220,
                   if (['value', 'id', 'title'].indexOf(key) === -1) {
                     chart.data('easyPieChart').options[key] = obj[key];
                   }
-                  return;
                }
                chart.data('easyPieChart').update(obj.value);
                return;
