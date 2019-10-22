@@ -929,22 +929,22 @@ tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_w
                var tile_top = tile.find('.count_top');
                var tile_delta = tile_bottom.find('#' + obj.id + '_delta');
                if(obj.hasOwnProperty('tile_title')){
-                  tile_top.text(obj.tile_title);
+                  tile_top.textNodes().replaceWith(obj.tile_title);
                }
                if(obj.hasOwnProperty('icon_text')){
                   tile_top.find('.fa').attr('class', 'fa ' + obj.icon_text);
                }
                if(obj.hasOwnProperty('value')){
-                  tile_top.find('div').textNodes().replaceWith(obj.value);
+                  tile_top.find('div').contents().filter(function(){ return this.nodeType == 3; }).replaceWith(obj.value);
                }
                if(obj.hasOwnProperty('from_text')){
-                  tile_bottom.textNodes().replaceWith(obj.from_text);
+                  tile_bottom.contents().filter(function(){ return this.nodeType == 3; }).replaceWith(obj.from_text);
                }
                if(obj.hasOwnProperty('colour')){          
                   tile_delta.attr('class', obj.colour);
                }
                if(obj.hasOwnProperty('delta')){          
-                  tile_delta.textNodes().replaceWith(obj.delta);
+                  tile_delta.contents().filter(function(){ return this.nodeType == 3; }).replaceWith(obj.delta);
                }
                if(obj.hasOwnProperty('direction')){          
                  if(obj.direction === 'up') {
