@@ -940,20 +940,15 @@ tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_w
                if(obj.hasOwnProperty('from_text')){
                   tile_bottom.contents().filter(function(){ return this.nodeType == 3; }).last().replaceWith(obj.from_text);
                }
-               if(obj.hasOwnProperty('delta')){          
-                  tile_delta.contents().filter(function(){ return this.nodeType == 3; }).last().replaceWith(obj.delta);
-               }
-               if(obj.hasOwnProperty('direction')){          
-                 if(obj.direction === 'up') {
-                    tile_delta.attr('class', 'green');
-                    tile_delta.find('.fa').attr('class', 'fa fa-sort-up')
-                 } else if (obj.direction === 'down') {
+               if(obj.hasOwnProperty('delta')){
+                  if (obj.delta[0]==='-'){
                     tile_delta.attr('class', 'red');
-                    tile_delta.find('.fa').attr('class', 'fa fa-sort-down')
-                 } else if (obj.direction === 'none') {
+                    tile_delta.find('.fa').attr('class', 'fa fa-sort-down');
+                  } else {
                     tile_delta.attr('class', 'green');
-                    tile_delta.find('.fa').attr('class', 'fa fa-sort')
-                 }
+                    tile_delta.find('.fa').attr('class', 'fa fa-sort-up');
+                  }
+                  tile_delta.contents().filter(function(){ return this.nodeType == 3; }).last().replaceWith(obj.delta);
                }
                return;
             });
