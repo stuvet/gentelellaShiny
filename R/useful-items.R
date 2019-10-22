@@ -929,17 +929,17 @@ tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_w
                var tile_top = tile.find('.count_top');
                var tile_delta = tile_bottom.find('#' + obj.id + '_delta');
                if(obj.hasOwnProperty('tile_title')){
-                  tile_top.find('.fa').text(obj.tile_title);
+                  tile_top.text(obj.tile_title);
                }
                if(obj.hasOwnProperty('icon_text')){
                   tile_top.find('.fa').attr('class', 'fa ' + obj.icon_text);
                }
                if(obj.hasOwnProperty('value')){
-                  tile_top.find('.count ').text(obj.value);
+                  tile_top.find('div').text(obj.value);
                }
-               if(obj.hasOwnProperty('from_text')){
-                  tile_bottom.text(obj.from_text);
-               }
+               //if(obj.hasOwnProperty('from_text')){
+               //   tile_bottom.text(obj.from_text);
+               //}
                if(obj.hasOwnProperty('colour')){          
                   tile_delta.attr('class', obj.colour);
                }
