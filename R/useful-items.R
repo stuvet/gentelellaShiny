@@ -935,16 +935,16 @@ tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_w
                   tile_top.find('.fa').attr('class', 'fa ' + obj.icon_text);
                }
                if(obj.hasOwnProperty('value')){
-                  tile_top.find('div').text(obj.value);
+                  tile_top.find('div').textNodes().replaceWith(obj.value);
                }
-               //if(obj.hasOwnProperty('from_text')){
-               //   tile_bottom.text(obj.from_text);
-               //}
+               if(obj.hasOwnProperty('from_text')){
+                  tile_bottom.textNodes().replaceWith(obj.from_text);
+               }
                if(obj.hasOwnProperty('colour')){          
                   tile_delta.attr('class', obj.colour);
                }
                if(obj.hasOwnProperty('delta')){          
-                  tile_delta.text(obj.delta);
+                  tile_delta.textNodes().replaceWith(obj.delta);
                }
                if(obj.hasOwnProperty('direction')){          
                  if(obj.direction === 'up') {
