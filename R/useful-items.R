@@ -215,17 +215,21 @@ pieChart <- function(id, value, height = 220, width = 220,
     shiny::singleton(
       shiny::tags$head(
         shiny::tags$script(
+          # Hacky! Seems to transfer arrow function of arr.includes() to =&gt even after escaping. Doing without.
           paste0(
             "Shiny.addCustomMessageHandler('", id, "', 
               async function(obj) {
-               var keys = Object.keys(obj).filter(el =\> !['value', 'id', 'title'].includes(el));
                var chart = $('#' + obj.id);    
                chart.attr('data-percent', obj.value);
                $('#' + obj.id).find('.percent').text(obj.value);
-               for await (key of keys) {
-                  chart.data('easyPieChart').options[key] = obj[key];
+               for await (key of Object.keys(obj)) {
+                  if (['value', 'id', 'title'].indexOf(key) != -1) {
+                    chart.data('easyPieChart').options[key] = obj[key];
+                  }
+                  return;
                }
                chart.data('easyPieChart').update(obj.value);
+               return;
             });
             "
           )
