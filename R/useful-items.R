@@ -882,6 +882,7 @@ tileCountRow <- function(...){
 
 #' tileCountRow Element
 #'
+#' @param id String Unique ID
 #' @param value Count value
 #' @param change_value Change value
 #' @param going_well If TRUE then change_value is green, else red
@@ -896,24 +897,71 @@ tileCountRow <- function(...){
 #' @author Mark Edmondson, \email{m@@sunholo.com}
 #'
 #' @export
-tileCountElement <- function(value = 2500, change_value = "4%", going_well = TRUE,
+tileCountElement <- function(id, value = 2500, change_value = "4%", going_well = TRUE,
                              tile_title = " Total Users", width = 3,
                              icon_in = shiny::icon("user"), from_text = " From last Week",
                              highlight = NULL){
   if (going_well) {
-    bottom_icon <- shiny::tags$i(class = "green", shiny::icon("sort-asc"), change_value)
+    bottom_icon <- shiny::tags$i(id = paste0(id, '_delta'), class = "green", shiny::icon("sort-asc"), change_value)
   } else {
-    bottom_icon <- shiny::tags$i(class = "red", shiny::icon("sort-desc"), change_value)
+    bottom_icon <- shiny::tags$i(id = paste0(id, '_delta'), class = "red", shiny::icon("sort-desc"), change_value)
   }
 
-  htmltools::withTags({
-    shiny::div(
-      class = paste0("col-md-",width," col-sm-4 col-xs-6 tile_stats_count"),
-      shiny::span(class = "count_top", icon_in, tile_title),
-      shiny::div(class = paste("count", highlight), value),
-      shiny::span(class = "count_bottom", bottom_icon, from_text)
-    )
-  })
+  tileCountElementTag <- htmltools::withTags({
+                          shiny::div(
+                            id = id,
+                            class = paste0("col-md-",width," col-sm-4 col-xs-6 tile_stats_count"),
+                            shiny::span(class = "count_top", icon_in, tile_title),
+                            shiny::div(class = paste("count", highlight), value),
+                            shiny::span(class = "count_bottom", bottom_icon, from_text)
+                          )
+                        })
+  
+   shiny::tagList(
+    shiny::singleton(
+      shiny::tags$head(
+        shiny::tags$script(
+          paste0(
+            "Shiny.addCustomMessageHandler('", id, "', 
+              async function(obj) {
+               var tile = $('#' + obj.id);
+               var tile_bottom = tile.find('.count_bottom');
+               var tile_top = tile.find('.count_top');
+               var tile_delta = tile_bottom.find('#' + obj.id + '_delta');
+               if(obj.hasOwnProperty('icon_text')){
+                  tile_top.find('.fa').attr('class', 'fa ' + obj.icon_text)
+               }
+               if(obj.hasOwnProperty('value')){
+                  tile_top.find('.count').text(obj.value);
+               }
+                tile.find('.count_top').find('.count').text(obj.value);
+               if(obj.hasOwnProperty('from_text')){
+                  tile_bottom.text(obj.from_text);
+               }
+               if(obj.hasOwnProperty('colour')){          
+                  tile_delta.attr('class', obj.colour);
+               }
+               if(obj.hasOwnProperty('delta')){          
+                  tile_delta.text(obj.delta);
+               }
+               if(obj.hasOwnProperty('direction')){          
+                 if(obj.direction === 'up') {
+                    tile_delta.find('.fa').attr('class', 'fa fa-sort-asc')
+                 } else if (obj.direction === 'down') {
+                    tile_delta.find('.fa').attr('class', 'fa fa-sort-desc')
+                 } else if (obj.direction === 'none' {
+                    tile_delta.find('.fa').attr('class', 'fa fa-sort')
+                 }
+               }
+               return;
+            });
+            "
+          )
+        )
+      )
+    ),
+    tileCountElementTag
+  )
 }
 
 #' tileCount UI
