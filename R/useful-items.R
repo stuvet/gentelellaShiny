@@ -941,8 +941,7 @@ tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_w
                   tile_bottom.contents().filter(function(){ return this.nodeType == 3; }).last().replaceWith(obj.from_text);
                }
                if(obj.hasOwnProperty('delta')){
-                  console.log(obj.delta[0].startsWith('-'));
-                  if (obj.delta[0]==='-'){
+                  if (obj.delta[0].startsWith('-')){
                     tile_delta.attr('class', 'red');
                     tile_delta.find('.fa').attr('class', 'fa fa-sort-down');
                   } else {
