@@ -929,7 +929,7 @@ tileCountElement <- function(id = '', value = 2500, change_value = "4%", going_w
                var tile_top = tile.find('.count_top');
                var tile_delta = tile_bottom.find('#' + obj.id + '_delta');
                if(obj.hasOwnProperty('tile_title')){
-                  tile_top.textNodes().replaceWith(obj.tile_title);
+                  tile_top.contents().filter(function(){ return this.nodeType == 3; }).replaceWith(obj.tile_title);
                }
                if(obj.hasOwnProperty('icon_text')){
                   tile_top.find('.fa').attr('class', 'fa ' + obj.icon_text);
